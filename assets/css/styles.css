@@ -1,0 +1,101 @@
+/* assets/css/styles.css */
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d8ca0a;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styling */
+header {
+    background: #2c5f2a;  /* A deep green nature theme */
+    color: white; /* White text on a dark background */ 
+    padding: 20px;
+    text-align: center;
+}   
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.product {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product h2 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.product p {
+    color: #666;
+}
+
+.product button {
+    background: #2c5f2d;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.product button:hover {
+    background: #1e4120;
+}
+
+footer {
+    background: #2c5f2d;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
