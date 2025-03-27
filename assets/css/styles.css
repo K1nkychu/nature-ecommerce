@@ -10,7 +10,7 @@
 /* Body Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #d8ca0a;
+    background-color: #f0e006d8;
     color: #333;
     line-height: 1.6;
 }
@@ -73,11 +73,11 @@ main {
 }
 
 .product p {
-    color: #666;
+    color: #1c753a;
 }
 
 .product button {
-    background: #2c5f2d;
+    background: #14816f;
     color: white;
     border: none;
     padding: 10px;
