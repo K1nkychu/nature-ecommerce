@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <header>
+    <header>  
         <h1>Your Shopping Cart</h1>
         <nav>
             <ul>
@@ -20,8 +20,17 @@
     </header>
     <main>
         <div id="cart-items"></div>
+         <!-- Cart items will be injected here -->
         <button onclick="checkout()">Proceed to Checkout</button>
     </main>
-    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/cart.js" type=module></script>
 </body>
 </html>
+
+
+
+<!--🔹 What This Does:-->
+
+<!--Loads cart items dynamically.-->
+<!--Allows users to remove products from their cart.-->
+

@@ -1,94 +1,66 @@
 // assets/js/scripts.js
 
+// Import necessary functions and data from store.js.
+import { products, addToCart, updateCartCount } from "./store.js";
+
 document.addEventListener("DOMContentLoaded", function () {
-    
-    // Example product data (could be replaced with API data later)
+    // Get the container where products will be displayed.
+    const productsContainer = document.getElementById("products");
 
-    const products = [
-        // 🌟 SIGNATURE PRODUCT
-        { id: 1, category: 'Signature', name: 'The Fortune-Ki Key Necklace', price: 79.99, color: 'Golden Glow', description: 'A handcrafted enchanted key pendant, infused with celestial energy and prosperity blessings, designed to unlock success, wealth, and destiny.', image: 'fortune_ki_key.jpg' },
-      
-        // 🧼 SOAPS
-        { id: 2, category: 'Soap', name: 'Fortune Ki Manifestation Soap', price: 14.99, color: 'Golden Amber', description: 'A handcrafted soap infused with cinnamon, basil, and gold mica to attract wealth and success.', image: 'fortune_manifest_soap.jpg' },
-        { id: 3, category: 'Soap', name: 'Mystic Moon Soap', price: 13.99, color: 'Lavender Blue', description: 'Moon-charged soap with lavender and jasmine to cleanse energy and enhance intuition.', image: 'mystic_moon_soap.jpg' },
-        { id: 4, category: 'Soap', name: 'Golden Abundance Soap', price: 15.99, color: 'Honey Gold', description: 'A luxurious soap blended with honey, turmeric, and chamomile to invite prosperity.', image: 'golden_abundance_soap.jpg' },
-        { id: 5, category: 'Soap', name: 'Ki of Fortune Protection Soap', price: 12.99, color: 'Deep Charcoal', description: 'Infused with sage, frankincense, and black tourmaline essence for spiritual shielding.', image: 'protection_soap.jpg' },
-        { id: 6, category: 'Soap', name: 'Sacred Earth Soap', price: 12.99, color: 'Earthy Brown', description: 'Grounding soap with patchouli and sandalwood to balance your root chakra.', image: 'sacred_earth_soap.jpg' },
-        { id: 7, category: 'Soap', name: 'Celestial Love Soap', price: 14.99, color: 'Soft Pink', description: 'Rose quartz-infused soap with rose and vanilla to attract romance and self-love.', image: 'celestial_love_soap.jpg' },
-        { id: 8, category: 'Soap', name: 'Dream Weaver Soap', price: 16.99, color: 'off white', description: 'Infused with chamomile, mugwort, and moonstone essence to enhance lucid dreams and peaceful sleep.', image: 'dream_weaver_soap.jpg' },
-        
-        // ✨ SEASONAL SOAPS
-        { id: 9, category: 'Soap', name: 'Spring Blossom Renewal Soap', price: 14.99, color: 'Cherry Blossom Pink', description: 'A floral-infused soap with cherry blossom, jasmine, and hibiscus for renewal and fresh beginnings.', image: 'spring_blossom_soap.jpg' },
-        { id: 10, category: 'Soap', name: 'Autumn Harvest Abundance Soap', price: 15.99, color: 'Pumpkin Spice Orange', description: 'A warm, spiced blend of cinnamon, pumpkin, and nutmeg to attract prosperity and comfort.', image: 'autumn_harvest_soap.jpg' },
-      
-        // 🧴 BODY BUTTERS
-        { id: 11, category: 'Body Butter', name: 'Fortune Glow Body Butter', price: 19.99, color: 'Golden Glow', description: 'A whipped shea butter blend with gold flakes and vanilla for radiant, hydrated skin.', image: 'fortune_glow_butter.jpg' },
-        { id: 12, category: 'Body Butter', name: 'Celestial Love Body Butter', price: 21.99, color: 'Rose Petal Pink', description: 'A luxurious rose and jasmine-infused butter to enhance attraction and self-love.', image: 'celestial_love_butter.jpg' },
-        { id: 13, category: 'Body Butter', name: 'Enchanted Forest Body Butter', price: 19.49, color: 'Deep Forest Green', description: 'A herbal blend of pine, eucalyptus, and cedarwood to connect with nature’s magic.', image: 'enchanted_forest_butter.jpg' },
-        { id: 14, category: 'Body Butter', name: 'Eternal Prosperity Butter', price: 24.99, color: '24K Gold', description: 'A rich gold-infused body butter, anointed with cinnamon and bergamot for long-lasting abundance and success.', image: 'eternal_prosperity_butter.jpg' },
-      
-        // ✨ MAGICKAL OILS
-        { id: 15, category: 'Oil', name: 'Fortune Flow Oil', price: 25.99, color: 'Golden Amber', description: 'A potent blend of bay leaf, cinnamon, and gold flakes to attract financial success.', image: 'fortune_flow_oil.jpg' },
-        { id: 16, category: 'Oil', name: 'Celestial Vision Oil', price: 26.99, color: 'Violet Purple', description: 'An anointing oil with mugwort and amethyst essence for enhanced intuition.', image: 'celestial_vision_oil.jpg' },
-        { id: 17, category: 'Oil', name: 'Divine Love Oil', price: 27.99, color: 'Rose Gold', description: 'A rose quartz-infused oil for attracting soulmates and enhancing relationships.', image: 'divine_love_oil.jpg' },
-      
-        // ✨ SEASONAL OILS
-        { id: 18, category: 'Oil', name: 'Winter Solstice Blessing Oil', price: 29.99, color: 'Snowy White', description: 'A peppermint and vanilla-infused oil, charged under the winter moon to bring clarity and new beginnings.', image: 'winter_solstice_oil.jpg' },
-      
-        // 💎 JEWELRY
-        { id: 19, category: 'Jewelry', name: 'Manifestation Crystal Pendant', price: 44.99, color: 'Clear Quartz', description: 'A charged quartz pendant to amplify intentions and desires.', image: 'manifestation_pendant.jpg' },
-        { id: 20, category: 'Jewelry', name: 'Prosperity Amulet Bracelet', price: 34.99, color: 'Gold', description: 'A charm bracelet infused with citrine and green aventurine to attract wealth and luck.', image: 'prosperity_amulet_bracelet.jpg' },
-      
-        // 🎁 MAGICKAL KITS & BUNDLES
-        { id: 21, category: 'Bundle', name: 'Manifestation Box Set', price: 89.99, color: 'Royal Blue & Gold', description: 'A powerful set including Manifestation Soap, Fortune Flow Oil, a Citrine Bracelet, and a Ritual Guide to amplify your wealth attraction.', image: 'manifestation_box.jpg' },
-        { id: 22, category: 'Bundle', name: 'Celestial Moon Ritual Kit', price: 99.99, color: 'Silver & Indigo', description: 'A dreamy kit including Moon Soap, Celestial Vision Oil, a Moonstone Pendant, and a Lunar Candle for deep spiritual awakening.', image: 'moon_ritual_kit.jpg' },
-        { id: 23, category: 'Bundle', name: 'Protection Set', price: 79.99, color: 'Black & Red', description: 'Includes Black Tourmaline Bracelet, Ki Protection Soap, Sacred Protection Oil, and a Sage Bundle for maximum energetic shielding.', image: 'protection_set.jpg' }
-      ];
-      
-    
+    // If the container doesn't exist (on pages without product listings), exit early.
+    if (!productsContainer) return;
 
-      
-    // Generates product listing with correct image references
-const productsContainer = document.getElementById("products");
+    // Loop through every product in the products array.
+    products.forEach(product => {
+        // Create a new div element for the product.
+        const productElement = document.createElement("div");
+        productElement.classList.add("product");
+        // Also set a custom attribute for filtering by category.
+        productElement.setAttribute("data-category", product.category);
 
-products.forEach(product => {
-    const productElement = document.createElement("div");
-    productElement.classList.add("product");
-    productElement.innerHTML = `
-        <img src="assets/images/${product.image}" alt="${product.name}">
-        <h2>${product.name}</h2>
-        <p>$${product.price.toFixed(2)}</p>
-        <button onclick="addToCart(${product.id})">Add to Cart</button>
-        <button onclick="viewProduct(${product.id})">View Details</button>
+        // Set the inner HTML of the product element with details.
+        productElement.innerHTML = `
+            <img src="assets/images/${product.image}" alt="${product.name}">
+            <h2>${product.name}</h2>
+            <p>$${product.price.toFixed(2)}</p>
+            <button onclick="handleAddToCart(${product.id})">Add to Cart</button>
+            <button onclick="viewProduct(${product.id})">View Details</button>
         `;
-    productsContainer.appendChild(productElement);
+
+        // Append the product element to the container.
+        productsContainer.appendChild(productElement);
+    });
+
+    // Initialize the cart count display.
+    updateCartCount();
 });
 
-    });
-// Function to Add Product to Cart//
-function addToCart(productId) {
-    let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-        const product = products.find(p => p.id === productId);
-        if (product) {
-            cart.push(product);
-            sessionStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
-            alert(`${product.name} added to cart!`);
-        }
+/**
+ * Global function to handle adding a product to the cart.
+ * This wraps the imported addToCart function.
+ */
+function handleAddToCart(productId) {
+    addToCart(productId);
 }
 
- // Function to Redirect to Product Page
- function viewProduct(productId) {
+/**
+ * Redirects the user to the product details page for the given productId.
+ */
+function viewProduct(productId) {
     window.location.href = `product.html?id=${productId}`;
 }
 
-    //to Filter Products//
-
+/**
+ * Filter function to show/hide products based on a category.
+ * Use this function with a category button or selector.
+ */
 function filterCategory(category) {
     const productElements = document.querySelectorAll(".product");
-    
+
     productElements.forEach(element => {
+        // Get the product's category from the custom attribute.
         const productCategory = element.getAttribute("data-category");
+        // Show all products if "All" is selected or match the category.
         if (category === "All" || productCategory === category) {
             element.style.display = "block";
         } else {
@@ -97,9 +69,40 @@ function filterCategory(category) {
     });
 }
 
-updateCartCount();
-function updateCartCount() {
-    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-    const cartCount = document.getElementById("cart-count");
-    cartCount.innerText = cart.length;
-}
+// Expose the filterCategory function to the global scope so it can be used by UI controls.
+window.filterCategory = filterCategory;
+// Also expose handleAddToCart if needed globally.
+window.handleAddToCart = handleAddToCart;
+
+
+
+
+
+
+//📝 Explanation of file
+
+
+//Lines 3–4: Import products and functions from store.js so you have access to the product data and cart operations.
+
+//DOMContentLoaded listener: Waits until the page is loaded before running the code.
+
+//Loop through products:
+
+//Creates a new <div> for each product.
+
+//Adds a CSS class (product) and a custom attribute (data-category) for filtering.
+
+//Sets the inner HTML with an image, name, price, and two buttons:
+
+//"Add to Cart" calls handleAddToCart() (which calls the imported addToCart()).
+
+//"View Details" redirects to a product details page.
+
+//updateCartCount(): Called to update the visible count of items in the cart.
+
+//Global functions:
+
+//handleAddToCart() and viewProduct() are defined to handle button clicks.
+
+//filterCategory() is attached to the window object so it can be called from UI controls (for example, from a dropdown or button group).
+
