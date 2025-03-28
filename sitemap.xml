@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://yourwebsite.com/index.html</loc>
+        <lastmod>2025-03-26</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://yourwebsite.com/shop.html</loc>
+        <lastmod>2025-03-26</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://yourwebsite.com/contact.html</loc>
+        <lastmod>2025-03-26</lastmod>
+        <priority>0.70</priority>
+    </url>
+    <url>
+        <loc>https://yourwebsite.com/about.html</loc>
+        <lastmod>2025-03-26</lastmod>
+        <priority>0.70</priority>
+    </url>
+</urlset>
+
+<!--What Do These Lines Mean?
+<loc> → The URL of your page. (Change it to match your website.)
+
+<lastmod> → The last time the page was updated.
+
+<changefreq> → How often the page changes (daily, weekly, monthly).
+
+<priority> → Importance of the page (1.0 = most important, 0.5 = less important).
+
+-->
+
+<!--🚀 How to Submit the Sitemap to Google
+Go to Google Search Console → https://search.google.com/search-console
+
+Sign in with your Google account.
+
+Add Your Website (https://yourwebsite.com).
+
+Click "Sitemaps" in the left menu.
+
+Enter sitemap.xml in the box.
+
+Click Submit ✅.
+
+Now Google will crawl your site faster and rank it higher in search results! 🚀
+
+-->
+
+<!--how do i commit the changes ive made to github using vscode, along with run test and debugging
+
+
+ChatGPT said:
+🚀 Committing Changes to GitHub, Running Tests, and Debugging in VS Code
+Now that you've made SEO improvements, let's commit the changes to GitHub, run the project, and debug it step by step!
+
+🛠 1. How to Commit Changes to GitHub in VS Code
+Step 1: Open the Terminal in VS Code
+Open VS Code.
+
+Click on View → Terminal (or press Ctrl + ~).
+
+Step 2: Check Git Status
+Run this command in the terminal to see which files were changed:
+
+sh
+Copy
+Edit
+git status
+If files are listed in red, that means they are uncommitted changes.
+
+Step 3: Add All Changes to Git
+To stage all changes, type:
+
+sh
+Copy
+Edit
+git add .
+✅ What does this do?
+It prepares all modified files to be committed.
+
+Step 4: Commit the Changes
+Now commit the changes with a message:
+
+sh
+Copy
+Edit
+git commit -m "Improved SEO and added sitemap.xml"
+✅ What does this do?
+It saves a snapshot of your project.
+
+Step 5: Push the Changes to GitHub
+If this is your first push, link your repository:
+
+sh
+Copy
+Edit
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/nature-ecommerce.git
+Push the changes:
+
+sh
+Copy
+Edit
+git push origin main
+If your branch is named master, use:
+
+sh
+Copy
+Edit
+git push origin master
+✅ What does this do?
+It uploads your project to GitHub! 🎉-->

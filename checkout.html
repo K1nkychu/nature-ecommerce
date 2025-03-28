@@ -1,0 +1,40 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Fortune-Ki</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Checkout</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form id="checkout-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="address">Shipping Address:</label>
+            <input type="text" id="address" required>
+            
+            <label for="payment">Payment Method:</label>
+            <select id="payment" required>
+                <option value="paypal">PayPal</option>
+                <option value="credit">Credit/Debit Card</option>
+                <option value="crypto">Cryptocurrency</option>
+            </select>
+            
+            <button type="submit">Place Order</button>
+        </form>
+    </main>
+</body>
+</html>

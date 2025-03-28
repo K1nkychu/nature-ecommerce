@@ -10,16 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
       
         // 🧼 SOAPS
         { id: 2, category: 'Soap', name: 'Fortune Ki Manifestation Soap', price: 14.99, color: 'Golden Amber', description: 'A handcrafted soap infused with cinnamon, basil, and gold mica to attract wealth and success.', image: 'fortune_manifest_soap.jpg' },
-        { id: 3, category: 'Soap', name: 'Mystic Moon Soap', price: 13.99, color: 'Lavender Blue', description: 'Moon-charged soap with lavender and jasmine to cleanse energy and enhance intuition.', image: 'mystic_moon_soap.jpeg' },
-        { id: 4, category: 'Soap', name: 'Golden Abundance Soap', price: 15.99, color: 'Honey Gold', description: 'A luxurious soap blended with honey, turmeric, and chamomile to invite prosperity.', image: 'golden_abundance_soap.jpeg' },
-        { id: 5, category: 'Soap', name: 'Ki of Fortune Protection Soap', price: 12.99, color: 'Deep Charcoal', description: 'Infused with sage, frankincense, and black tourmaline essence for spiritual shielding.', image: 'protection_soap.jpeg' },
+        { id: 3, category: 'Soap', name: 'Mystic Moon Soap', price: 13.99, color: 'Lavender Blue', description: 'Moon-charged soap with lavender and jasmine to cleanse energy and enhance intuition.', image: 'mystic_moon_soap.jpg' },
+        { id: 4, category: 'Soap', name: 'Golden Abundance Soap', price: 15.99, color: 'Honey Gold', description: 'A luxurious soap blended with honey, turmeric, and chamomile to invite prosperity.', image: 'golden_abundance_soap.jpg' },
+        { id: 5, category: 'Soap', name: 'Ki of Fortune Protection Soap', price: 12.99, color: 'Deep Charcoal', description: 'Infused with sage, frankincense, and black tourmaline essence for spiritual shielding.', image: 'protection_soap.jpg' },
         { id: 6, category: 'Soap', name: 'Sacred Earth Soap', price: 12.99, color: 'Earthy Brown', description: 'Grounding soap with patchouli and sandalwood to balance your root chakra.', image: 'sacred_earth_soap.jpg' },
         { id: 7, category: 'Soap', name: 'Celestial Love Soap', price: 14.99, color: 'Soft Pink', description: 'Rose quartz-infused soap with rose and vanilla to attract romance and self-love.', image: 'celestial_love_soap.jpg' },
         { id: 8, category: 'Soap', name: 'Dream Weaver Soap', price: 16.99, color: 'off white', description: 'Infused with chamomile, mugwort, and moonstone essence to enhance lucid dreams and peaceful sleep.', image: 'dream_weaver_soap.jpg' },
         
         // ✨ SEASONAL SOAPS
         { id: 9, category: 'Soap', name: 'Spring Blossom Renewal Soap', price: 14.99, color: 'Cherry Blossom Pink', description: 'A floral-infused soap with cherry blossom, jasmine, and hibiscus for renewal and fresh beginnings.', image: 'spring_blossom_soap.jpg' },
-        { id: 10, category: 'Soap', name: 'Autumn Harvest Abundance Soap', price: 15.99, color: 'Pumpkin Spice Orange', description: 'A warm, spiced blend of cinnamon, pumpkin, and nutmeg to attract prosperity and comfort.', image: 'autumn_harvest_soap.jpeg' },
+        { id: 10, category: 'Soap', name: 'Autumn Harvest Abundance Soap', price: 15.99, color: 'Pumpkin Spice Orange', description: 'A warm, spiced blend of cinnamon, pumpkin, and nutmeg to attract prosperity and comfort.', image: 'autumn_harvest_soap.jpg' },
       
         // 🧴 BODY BUTTERS
         { id: 11, category: 'Body Butter', name: 'Fortune Glow Body Butter', price: 19.99, color: 'Golden Glow', description: 'A whipped shea butter blend with gold flakes and vanilla for radiant, hydrated skin.', image: 'fortune_glow_butter.jpg' },
@@ -47,23 +47,59 @@ document.addEventListener("DOMContentLoaded", function () {
       
     
 
+      
+    // Generates product listing with correct image references
+const productsContainer = document.getElementById("products");
 
-    const productsContainer = document.getElementById("products");
-
-    // Generate HTML for products
-    products.forEach(product => {
-        const productElement = document.createElement("div");
-        productElement.classList.add("product");
-        productElement.innerHTML = `
-            <img src="${product.img}" alt="${product.name}">
-            <h2>${product.name}</h2>
-            <p>$${product.price.toFixed(2)}</p>
-            <button onclick="addToCart(${product.id})">Add to Cart</button>
+products.forEach(product => {
+    const productElement = document.createElement("div");
+    productElement.classList.add("product");
+    productElement.innerHTML = `
+        <img src="assets/images/${product.image}" alt="${product.name}">
+        <h2>${product.name}</h2>
+        <p>$${product.price.toFixed(2)}</p>
+        <button onclick="addToCart(${product.id})">Add to Cart</button>
+        <button onclick="viewProduct(${product.id})">View Details</button>
         `;
-        productsContainer.appendChild(productElement);
-    });
+    productsContainer.appendChild(productElement);
 });
 
+    });
+// Function to Add Product to Cart//
 function addToCart(productId) {
-    alert(`Product ${productId} added to cart!`);
+    let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        const product = products.find(p => p.id === productId);
+        if (product) {
+            cart.push(product);
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert(`${product.name} added to cart!`);
+        }
+}
+
+ // Function to Redirect to Product Page
+ function viewProduct(productId) {
+    window.location.href = `product.html?id=${productId}`;
+}
+
+    //to Filter Products//
+
+function filterCategory(category) {
+    const productElements = document.querySelectorAll(".product");
+    
+    productElements.forEach(element => {
+        const productCategory = element.getAttribute("data-category");
+        if (category === "All" || productCategory === category) {
+            element.style.display = "block";
+        } else {
+            element.style.display = "none";
+        }
+    });
+}
+
+updateCartCount();
+function updateCartCount() {
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+    const cartCount = document.getElementById("cart-count");
+    cartCount.innerText = cart.length;
 }
